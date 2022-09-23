@@ -172,9 +172,9 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
@@ -641,6 +641,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5219997073987667954, guid: 5df1dcf7100b14207b4cd7701cfbb095, type: 3}
+      propertyPath: verticalMountOffset
+      value: 0.08
+      objectReference: {fileID: 0}
     - target: {fileID: 6129782631513415611, guid: 5df1dcf7100b14207b4cd7701cfbb095, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -685,6 +689,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8103159137889220644, guid: 5df1dcf7100b14207b4cd7701cfbb095, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5df1dcf7100b14207b4cd7701cfbb095, type: 3}
 --- !u!1 &2143658593 stripped
@@ -704,6 +712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4a917c85b1043a08de1316b0836bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveDirection: {x: 0, y: 0}
   speed: 1
 --- !u!114 &2143658595
 MonoBehaviour:
