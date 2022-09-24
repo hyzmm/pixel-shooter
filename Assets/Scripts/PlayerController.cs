@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Animator))]
-public class PlayerController : Movable 
+public class PlayerController : Movable
 {
     public float speed = 5f;
 
@@ -46,7 +46,11 @@ public class PlayerController : Movable
     void Update()
     {
         transform.Translate(moveDirection * (speed * Time.deltaTime));
-        transform.localScale = new Vector3(Mathf.Sign(_lastMoveDir.x), 1, 1);
+        // 此判断是为了维持上次的移动方向
+        if (_lastMoveDir.x != 0)
+        {
+            transform.localScale = new Vector3(Mathf.Sign(_lastMoveDir.x), 1, 1);
+        }
     }
 
     void UpdateAnimatorVariables()
