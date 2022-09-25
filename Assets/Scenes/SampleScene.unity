@@ -447,7 +447,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.3254902, g: 0.63529414, b: 0.3647059, a: 1}
   m_FlipX: 0
@@ -682,6 +682,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2143658594, guid: 5df1dcf7100b14207b4cd7701cfbb095, type: 3}
+      propertyPath: WeaponPrefab
+      value: 
+      objectReference: {fileID: 6376155275325786877, guid: 4bf2ff314007641a2a7d656965b8931d, type: 3}
+    - target: {fileID: 2143658594, guid: 5df1dcf7100b14207b4cd7701cfbb095, type: 3}
+      propertyPath: weaponPrefab
+      value: 
+      objectReference: {fileID: 6376155275325786877, guid: 4bf2ff314007641a2a7d656965b8931d, type: 3}
     - target: {fileID: 310469315379675047, guid: 5df1dcf7100b14207b4cd7701cfbb095, type: 3}
       propertyPath: m_Name
       value: Player

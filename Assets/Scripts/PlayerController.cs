@@ -5,7 +5,10 @@ using UnityEngine.InputSystem;
 public class PlayerController : Movable
 {
     public float speed = 5f;
+    public GameObject weaponPrefab;
+    public Transform weaponSlot;
 
+    private GameObject _weapon;
     private Animator _animator;
     private PlayerInputAction _playerInputAction;
     private Vector2 _moveDir;
@@ -16,6 +19,9 @@ public class PlayerController : Movable
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        _animator.speed = 0;
+
+        _weapon = Instantiate(weaponPrefab, new Vector3(0, -0.04f, 0), Quaternion.identity, weaponSlot);
     }
 
     void OnEnable()
@@ -25,6 +31,7 @@ public class PlayerController : Movable
         _playerInputAction.Player.Aim.performed += PerformAim;
         _playerInputAction.Player.Move.performed += PerformMove;
         _playerInputAction.Player.Move.canceled += CancelMove;
+        _playerInputAction.Player.Fire.performed += PerformFire;
     }
 
     private void PerformAim(InputAction.CallbackContext context)
@@ -33,6 +40,8 @@ public class PlayerController : Movable
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>());
         orientation = (mousePos - (Vector2)transform.position).normalized;
+        _weapon.GetComponent<Weapon>().UpdateDirection(DirectionInEight);
+
         UpdateAnimatorParams();
 
         // 此判断是为了维持上次的移动方向
@@ -52,6 +61,11 @@ public class PlayerController : Movable
     {
         _moveDir = Vector2.zero;
         _animator.speed = 0;
+    }
+
+    private void PerformFire(InputAction.CallbackContext obj)
+    {
+        _weapon.GetComponent<Weapon>().Fire(orientation);
     }
 
 

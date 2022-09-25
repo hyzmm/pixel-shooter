@@ -11,10 +11,11 @@ public class Weapon : MonoBehaviour
     public Sprite diagUp;
     public Sprite diagDown;
 
+    public GameObject bulletPrefab;
+
     public float horizontalMountOffset = 0.14f;
     public float verticalMountOffset = 0.08f;
-
-    public Movable owner;
+    public float bulletSpawnOffset = 0.15f;
 
     private SpriteRenderer _spriteRenderer;
 
@@ -25,15 +26,10 @@ public class Weapon : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        UpdateDirection();
-    }
 
-    private void UpdateDirection()
+    public void UpdateDirection(EightDirection direction)
     {
-        var dirInEight = owner.DirectionInEight;
-        var orientation = EightDirectionUtil.DirectionToVector(dirInEight);
+        var orientation = EightDirectionUtil.DirectionToVector(direction);
 
         void ApplyVerticalOffset()
         {
@@ -49,7 +45,7 @@ public class Weapon : MonoBehaviour
             );
         }
 
-        switch (dirInEight)
+        switch (direction)
         {
             case EightDirection.Right:
             case EightDirection.Left:
@@ -82,5 +78,14 @@ public class Weapon : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+
+    public void Fire(Vector2 orientation)
+    {
+        var dirInEight = EightDirectionUtil.GetEightDirection(orientation);
+        Vector3 dirInVec3 = EightDirectionUtil.DirectionToVector(dirInEight);
+
+        var rotation = Quaternion.Euler(0, 0, Mathf.Atan2(orientation.y, orientation.x) * Mathf.Rad2Deg);
+        Instantiate(bulletPrefab, transform.position + dirInVec3 * bulletSpawnOffset, rotation);
     }
 }
