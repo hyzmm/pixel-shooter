@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,7 @@ public class PlayerController : Movable
 
     private GameObject _weapon;
     private Animator _animator;
+    private Rigidbody2D _rigidbody;
     private PlayerInputAction _playerInputAction;
     private Vector2 _moveDir;
 
@@ -18,6 +20,7 @@ public class PlayerController : Movable
 
     private void Start()
     {
+        _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _animator.speed = 0;
 
@@ -70,9 +73,9 @@ public class PlayerController : Movable
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.Translate(_moveDir * (speed * Time.deltaTime));
+        _rigidbody.MovePosition((Vector2)transform.position + _moveDir * (speed * Time.deltaTime));
     }
 
     void UpdateAnimatorParams()

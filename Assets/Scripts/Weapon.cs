@@ -86,6 +86,7 @@ public class Weapon : MonoBehaviour
         Vector3 dirInVec3 = EightDirectionUtil.DirectionToVector(dirInEight);
 
         var rotation = Quaternion.Euler(0, 0, Mathf.Atan2(orientation.y, orientation.x) * Mathf.Rad2Deg);
-        Instantiate(bulletPrefab, transform.position + dirInVec3 * bulletSpawnOffset, rotation);
+        var go = Instantiate(bulletPrefab, transform.position + dirInVec3 * bulletSpawnOffset, rotation);
+        go.layer = LayerMask.NameToLayer("Player");
     }
 }
